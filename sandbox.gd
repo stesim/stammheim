@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var _game_over_panel := %game_over_panel
 @onready var _completion_panel := %completion_panel
+@onready var _score_label := %score_label
 @onready var _character_selection_panel := %character_selection_panel
 @onready var _crew_selection_slider := %crew_selection_slider
 @onready var _alarm_track := %alarm_track
@@ -14,7 +15,11 @@ func _ready() -> void:
 			_game_over_panel.show()
 			_alarm_track.play()
 	)
-	GameState.level_completed.connect(func(): _completion_panel.show())
+	GameState.level_completed.connect(
+		func():
+			_completion_panel.show()
+			_score_label.text = str(GameState.get_score())
+	)
 	_on_crew_selection_slider_value_changed(_crew_selection_slider.value)
 
 

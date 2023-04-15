@@ -6,6 +6,8 @@ signal level_completed()
 
 
 var _started := false
+var _start_time := 0
+var _end_time := 0
 
 
 @onready var _tree := get_tree()
@@ -13,6 +15,7 @@ var _started := false
 
 func start() -> void:
 	_started = true
+	_start_time = Time.get_ticks_msec()
 
 
 func is_started() -> bool:
@@ -31,9 +34,16 @@ func prisoner_detected() -> void:
 
 
 func escape_area_reached() -> void:
+	_end_time = Time.get_ticks_msec()
 	_tree.paused = true
 	print("level completed")
 	level_completed.emit()
+
+
+func get_score() -> int:
+	var elapsed_time := (_end_time - _start_time) / 1000.0;
+	var num_prisoners := get_tree().get_nodes_in_group(&"prisoners").size()
+	return int(num_prisoners / elapsed_time * 100000)
 
 
 func _unhandled_input(event : InputEvent) -> void:
