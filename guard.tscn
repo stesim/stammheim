@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq8pvs6onk2fb"]
+[gd_scene load_steps=5 format=3 uid="uid://bq8pvs6onk2fb"]
 
 [ext_resource type="Script" path="res://guard.gd" id="1_h3hoe"]
 [ext_resource type="Texture2D" uid="uid://bdtk2w8ctl427" path="res://assets/spritesheet_characters.png" id="1_wv1ib"]
+[ext_resource type="Texture2D" uid="uid://dn2iyveml7qdl" path="res://assets/LightCone3_2.png" id="3_08y4a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wosuh"]
 height = 44.0
@@ -25,6 +26,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="view_cone" type="CollisionPolygon2D" parent="view_area"]
+visible = false
 polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
+
+[node name="light" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.703125)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("3_08y4a")
+offset = Vector2(150, 16)
+texture_scale = 0.25
 
 [connection signal="body_entered" from="view_area" to="." method="_on_view_area_body_entered"]
