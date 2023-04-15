@@ -43,11 +43,11 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="Curve2D" id="Curve2D_bmcxn"]
+[sub_resource type="Curve2D" id="Curve2D_m80gh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 508.723, 345.237, 0, 0, 0, 0, 1176.59, 342.317, 0, 0, 0, 0, 1177.59, 605.042, 0, 0, 0, 0, 668.213, 599.204, 0, 0, 0, 0, 666.22, 425.027, 0, 0, 0, 0, 416.019, 423.081, 0, 0, 0, 0, 353.22, 423.081, 0, 0, 0, 0, 349.232, 604.069, 0, 0, 0, 0, 91.0573, 602.123, 0, 0, 0, 0, 91.0573, 404.593, 0, 0, 0, 0, 421.003, 406.539, 0, 0, 0, 0, 508.723, 405.566, 0, 0, 0, 0, 508.723, 345.237)
+"points": PackedVector2Array(0, 0, 0, 0, 97.0387, 407.513, 0, 0, 0, 0, 511.716, 407.513, 0, 0, 0, 0, 511.716, 345.237, 0, 0, 0, 0, 1181.58, 345.237)
 }
-point_count = 13
+point_count = 4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w6x"]
 size = Vector2(128, 126)
@@ -111,8 +111,9 @@ speed = 64.0
 [node name="walking_guard5" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
-curve = SubResource("Curve2D_bmcxn")
+curve = SubResource("Curve2D_m80gh")
 speed = 64.0
+go_back = true
 
 [node name="escape_area" parent="." instance=ExtResource("4_5ito0")]
 position = Vector2(1160, 104)
@@ -147,8 +148,7 @@ position = Vector2(160, 568)
 speed = 256.0
 
 [node name="canvas_modulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.196078, 0.196078, 0.196078, 1)
+color = Color(0.156863, 0.156863, 0.156863, 1)
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_g7r36")
