@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq8pvs6onk2fb"]
+[gd_scene load_steps=4 format=3 uid="uid://bq8pvs6onk2fb"]
 
+[ext_resource type="Script" path="res://guard.gd" id="1_h3hoe"]
 [ext_resource type="Texture2D" uid="uid://bdtk2w8ctl427" path="res://assets/spritesheet_characters.png" id="1_wv1ib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wosuh"]
 height = 44.0
 
 [node name="guard" type="CharacterBody2D"]
+script = ExtResource("1_h3hoe")
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(11, 0)
@@ -15,3 +17,12 @@ region_rect = Rect2(263, 132, 50, 43)
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_wosuh")
+
+[node name="view_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="view_cone" type="CollisionPolygon2D" parent="view_area"]
+polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
+
+[connection signal="body_entered" from="view_area" to="." method="_on_view_area_body_entered"]

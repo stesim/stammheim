@@ -7,6 +7,7 @@
 radius = 16.0
 
 [node name="prisoner" type="CharacterBody2D" groups=["prisoners"]]
+collision_layer = 2
 script = ExtResource("1_eoj10")
 
 [node name="sprite" type="Sprite2D" parent="."]

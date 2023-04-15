@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxdxaip521lcq"]
+[gd_scene load_steps=13 format=3 uid="uid://dxdxaip521lcq"]
 
+[ext_resource type="Script" path="res://sandbox.gd" id="1_52v6e"]
 [ext_resource type="Texture2D" uid="uid://cw3l3600ciwa7" path="res://assets/spritesheet_tiles.png" id="1_atx4v"]
 [ext_resource type="PackedScene" uid="uid://opog1ttqf8wp" path="res://walking_guard.tscn" id="2_qglee"]
 [ext_resource type="PackedScene" uid="uid://jpjqw4ordrv8" path="res://prisoner.tscn" id="3_t6lhf"]
+[ext_resource type="PackedScene" uid="uid://dwti8gonass1c" path="res://escape_area.tscn" id="4_5ito0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbren"]
 texture = ExtResource("1_atx4v")
@@ -369,7 +371,11 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w6x"]
+size = Vector2(112, 80)
+
 [node name="sandbox" type="Node2D"]
+script = ExtResource("1_52v6e")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2wlsy")
@@ -392,6 +398,92 @@ speed = 500.0
 curve = SubResource("Curve2D_kdhvh")
 speed = 200.0
 
+[node name="escape_area" parent="." instance=ExtResource("4_5ito0")]
+position = Vector2(1160, 104)
+
+[node name="escape_area_shape" type="CollisionShape2D" parent="escape_area"]
+shape = SubResource("RectangleShape2D_x5w6x")
+
 [node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]
 position = Vector2(114, 581)
+speed = 256.0
 player_controlled = true
+
+[node name="prisoner2" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(168, 592)
+speed = 256.0
+
+[node name="ui_layer" type="CanvasLayer" parent="."]
+
+[node name="game_over_panel" type="PanelContainer" parent="ui_layer"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ui_layer/game_over_panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_layer/game_over_panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ui_layer/game_over_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="restart_button" type="Button" parent="ui_layer/game_over_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="completion_panel" type="PanelContainer" parent="ui_layer"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ui_layer/completion_panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_layer/completion_panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="ui_layer/completion_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL COMPLETED"
+
+[node name="restart_button" type="Button" parent="ui_layer/completion_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[connection signal="pressed" from="ui_layer/game_over_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ui_layer/completion_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]

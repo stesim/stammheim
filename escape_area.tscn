@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwti8gonass1c"]
+
+[ext_resource type="Script" path="res://escape_area.gd" id="1_1gkj5"]
+
+[node name="escape_area" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1gkj5")

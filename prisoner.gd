@@ -19,19 +19,3 @@ func _physics_process(_delta : float) -> void:
 	if velocity:
 		rotation = velocity.angle()
 	move_and_slide()
-
-
-func _unhandled_input(event : InputEvent) -> void:
-	if not player_controlled:
-		return
-	if event.is_action_pressed(&"switch_character"):
-		_switch_character()
-
-
-func _switch_character() -> void:
-	var prisoners := get_tree().get_nodes_in_group(&"prisoners")
-	var current_character_index := prisoners.find(self)
-	var next_character := prisoners[(current_character_index + 1) % prisoners.size()]
-
-	self.player_controlled = false
-	next_character.player_controlled = true
