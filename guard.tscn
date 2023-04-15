@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8pvs6onk2fb"]
+
+[ext_resource type="Texture2D" uid="uid://bdtk2w8ctl427" path="res://assets/spritesheet_characters.png" id="1_wv1ib"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wosuh"]
+height = 44.0
+
+[node name="guard" type="CharacterBody2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(11, 0)
+texture = ExtResource("1_wv1ib")
+region_enabled = true
+region_rect = Rect2(263, 132, 50, 43)
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wosuh")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://opog1ttqf8wp"]
+
+[ext_resource type="PackedScene" uid="uid://bq8pvs6onk2fb" path="res://guard.tscn" id="1_h1tle"]
+[ext_resource type="Script" path="res://walking_guard.gd" id="1_tf2n0"]
+
+[sub_resource type="Curve2D" id="Curve2D_idiys"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 112, 176, 0, 0, 0, 0, 280, 144, 0, 0, 0, 0, 392, 264, 0, 0, 0, 0, 272, 368, 0, 0, 0, 0, 104, 304, 0, 0, 0, 0, 112, 176)
+}
+point_count = 6
+
+[node name="walking_guard" type="Path2D"]
+curve = SubResource("Curve2D_idiys")
+script = ExtResource("1_tf2n0")
+
+[node name="follow" type="PathFollow2D" parent="."]
+unique_name_in_owner = true
+
+[node name="guard" parent="follow" instance=ExtResource("1_h1tle")]
