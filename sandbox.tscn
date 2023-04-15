@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxdxaip521lcq"]
+[gd_scene load_steps=17 format=3 uid="uid://dxdxaip521lcq"]
 
 [ext_resource type="Script" path="res://sandbox.gd" id="1_52v6e"]
 [ext_resource type="TileSet" uid="uid://d1i2b4bur86mn" path="res://level_tile_set.tres" id="2_3l780"]
@@ -8,6 +8,16 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2sh2m"]
 polygon = PackedVector2Array(128, 128, 128, 384, 192, 384, 192, 256, 256, 256, 256, 320, 320, 320, 320, 384, 384, 384, 384, 256, 320, 256, 320, 192, 256, 192, 256, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3oa7b"]
+polygon = PackedVector2Array(512, 128, 640, 128, 640, 192, 832, 192, 832, 128, 896, 128, 896, 320, 768, 320, 768, 256, 512, 256)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oyifg"]
+polygon = PackedVector2Array(832, 384, 896, 384, 896, 448, 960, 448, 960, 512, 1088, 512, 1088, 384, 1152, 384, 1152, 576, 832, 576)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i3uc7"]
+closed = false
+polygon = PackedVector2Array(64, 64, 960, 64, 960, 256, 1088, 256, 1088, 64, 1216, 64, 1216, 640, 640, 640, 640, 448, 576, 448, 576, 576, 448, 576, 448, 512, 384, 512, 384, 640, 64, 640, 64, 64)
 
 [sub_resource type="Curve2D" id="Curve2D_b7sg7"]
 _data = {
@@ -63,6 +73,15 @@ layer_1/tile_data = PackedInt32Array(655379, 655360, 11, 19, 655360, 10, 0, 5898
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_2sh2m")
 
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_3oa7b")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_oyifg")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_i3uc7")
+
 [node name="walking_guard" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
@@ -74,12 +93,14 @@ position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_a1i1x")
 speed = 64.0
+go_back = true
 
 [node name="walking_guard3" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_gt1pl")
 speed = 64.0
+go_back = true
 
 [node name="walking_guard4" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
@@ -101,15 +122,32 @@ position = Vector2(-8, 23)
 shape = SubResource("RectangleShape2D_x5w6x")
 
 [node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]
-position = Vector2(114, 581)
+position = Vector2(160, 616)
 speed = 256.0
 player_controlled = true
 
 [node name="prisoner2" parent="." instance=ExtResource("3_t6lhf")]
-position = Vector2(168, 592)
+position = Vector2(120, 616)
+speed = 256.0
+
+[node name="prisoner3" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(80, 616)
+speed = 256.0
+
+[node name="prisoner4" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(80, 568)
+speed = 256.0
+
+[node name="prisoner5" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(120, 568)
+speed = 256.0
+
+[node name="prisoner6" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(160, 568)
 speed = 256.0
 
 [node name="canvas_modulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="environment" type="WorldEnvironment" parent="."]

@@ -12,13 +12,12 @@ var direction := 1.0
 func _ready():
 	_follow.loop = !go_back
 
-
 func _physics_process(delta : float) -> void:
 	_follow.progress += direction * delta * speed
 	if _follow.progress_ratio >= 1.0 and go_back:
 		direction *= -1.0
 		_guard.rotation += PI
-	if _follow.progress_ratio <= 0.0 and go_back:
+	elif _follow.progress_ratio <= 0.0 and go_back:
 		direction *= -1.0
 		_guard.rotation -= PI
 			
