@@ -184,7 +184,7 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="ui_layer/game_over_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "GAME OVER"
+text = "You have been detected!"
 
 [node name="restart_button" type="Button" parent="ui_layer/game_over_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -219,11 +219,58 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="ui_layer/completion_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "LEVEL COMPLETED"
+text = "One step closer to freedom!"
 
 [node name="restart_button" type="Button" parent="ui_layer/completion_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
 
+[node name="character_selection_panel" type="PanelContainer" parent="ui_layer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ui_layer/character_selection_panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_layer/character_selection_panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ui_layer/character_selection_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select your crew"
+horizontal_alignment = 1
+
+[node name="crew_selection_slider" type="HSlider" parent="ui_layer/character_selection_panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 6.0
+value = 1.0
+rounded = true
+tick_count = 6
+ticks_on_borders = true
+
+[node name="start_button" type="Button" parent="ui_layer/character_selection_panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
 [connection signal="pressed" from="ui_layer/game_over_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ui_layer/completion_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="value_changed" from="ui_layer/character_selection_panel/MarginContainer/VBoxContainer/crew_selection_slider" to="." method="_on_crew_selection_slider_value_changed"]
+[connection signal="pressed" from="ui_layer/character_selection_panel/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]

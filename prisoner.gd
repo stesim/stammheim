@@ -14,6 +14,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta : float) -> void:
+	if not GameState.is_started():
+		return
+
 	var direction := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 	velocity = speed * direction
 	if velocity:

@@ -19,6 +19,7 @@ region_enabled = true
 region_rect = Rect2(263, 132, 50, 43)
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_wosuh")
 
 [node name="view_area" type="Area2D" parent="."]
@@ -30,11 +31,12 @@ visible = false
 polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
 
 [node name="light" type="PointLight2D" parent="."]
+position = Vector2(24, 10)
 scale = Vector2(1, 0.703125)
 energy = 2.0
 shadow_enabled = true
 texture = ExtResource("3_08y4a")
-offset = Vector2(150, 16)
+offset = Vector2(128, 0)
 texture_scale = 0.25
 
 [connection signal="body_entered" from="view_area" to="." method="_on_view_area_body_entered"]

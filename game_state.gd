@@ -5,7 +5,18 @@ signal game_over()
 signal level_completed()
 
 
+var _started := false
+
+
 @onready var _tree := get_tree()
+
+
+func start() -> void:
+	_started = true
+
+
+func is_started() -> bool:
+	return _started
 
 
 func restart() -> void:
