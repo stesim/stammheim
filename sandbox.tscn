@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxdxaip521lcq"]
+[gd_scene load_steps=19 format=3 uid="uid://dxdxaip521lcq"]
 
 [ext_resource type="Script" path="res://sandbox.gd" id="1_52v6e"]
 [ext_resource type="TileSet" uid="uid://d1i2b4bur86mn" path="res://level_tile_set.tres" id="2_3l780"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jpjqw4ordrv8" path="res://prisoner.tscn" id="3_t6lhf"]
 [ext_resource type="PackedScene" uid="uid://dwti8gonass1c" path="res://escape_area.tscn" id="4_5ito0"]
 [ext_resource type="AudioStream" uid="uid://b7ssk6ouk2183" path="res://assets/stammheim02.mp3" id="6_v67jp"]
+[ext_resource type="AudioStream" uid="uid://bv0ubcra5xr1x" path="res://assets/Alarm_rare_2.wav" id="7_jwhbq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2sh2m"]
 polygon = PackedVector2Array(128, 128, 128, 384, 192, 384, 192, 256, 256, 256, 256, 320, 320, 320, 320, 384, 384, 384, 384, 256, 320, 256, 320, 192, 256, 192, 256, 128)
@@ -154,6 +155,16 @@ color = Color(0.156863, 0.156863, 0.156863, 1)
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_g7r36")
 
+[node name="background_track" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_v67jp")
+autoplay = true
+
+[node name="alarm_track" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+stream = ExtResource("7_jwhbq")
+pitch_scale = 0.75
+
 [node name="ui_layer" type="CanvasLayer" parent="."]
 
 [node name="game_over_panel" type="PanelContainer" parent="ui_layer"]
@@ -270,10 +281,6 @@ ticks_on_borders = true
 [node name="start_button" type="Button" parent="ui_layer/character_selection_panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Start"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_v67jp")
-autoplay = true
 
 [connection signal="pressed" from="ui_layer/game_over_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ui_layer/completion_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
