@@ -125,7 +125,7 @@ shape = SubResource("RectangleShape2D_x5w6x")
 [node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]
 position = Vector2(160, 616)
 speed = 256.0
-player_controlled = true
+player_index = 0
 
 [node name="prisoner2" parent="." instance=ExtResource("3_t6lhf")]
 position = Vector2(120, 616)

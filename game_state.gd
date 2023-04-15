@@ -37,19 +37,26 @@ func escape_area_reached() -> void:
 
 
 func _unhandled_input(event : InputEvent) -> void:
-	if event.is_action_pressed(&"switch_character"):
-		_switch_character()
+	if event.is_action_pressed(&"p0.switch_character"):
+		_switch_character(0)
+	if event.is_action_pressed(&"p1.switch_character"):
+		_switch_character(1)
 
 
-func _switch_character() -> void:
+func _switch_character(player_index : int) -> void:
 	var prisoners := get_tree().get_nodes_in_group(&"prisoners")
 	var current_character_index := 0
 	for prisoner in prisoners:
-		if prisoner.player_controlled:
+		if prisoner.player_index == player_index:
 			break
 		current_character_index += 1
 
-	var next_character := prisoners[(current_character_index + 1) % prisoners.size()]
+	if current_character_index < prisoners.size():
+		prisoners[current_character_index].player_index = -1
 
-	prisoners[current_character_index].player_controlled = false
-	next_character.player_controlled = true
+	for i in prisoners.size():
+		var index := (current_character_index + i + 1) % prisoners.size()
+		var prisoner := prisoners[index]
+		if not prisoner.is_player_controlled():
+			prisoner.player_index = player_index
+			break
