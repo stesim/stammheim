@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://jpjqw4ordrv8"]
+
+[ext_resource type="Script" path="res://prisoner.gd" id="1_eoj10"]
+[ext_resource type="Texture2D" uid="uid://bdtk2w8ctl427" path="res://assets/spritesheet_characters.png" id="1_xgo1q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o441j"]
+radius = 16.0
+
+[node name="prisoner" type="CharacterBody2D" groups=["prisoners"]]
+script = ExtResource("1_eoj10")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_xgo1q")
+region_enabled = true
+region_rect = Rect2(459, 132, 34, 44)
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o441j")
