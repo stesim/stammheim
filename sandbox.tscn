@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxdxaip521lcq"]
+[gd_scene load_steps=10 format=3 uid="uid://dxdxaip521lcq"]
 
 [ext_resource type="Texture2D" uid="uid://cw3l3600ciwa7" path="res://assets/spritesheet_tiles.png" id="1_atx4v"]
 [ext_resource type="PackedScene" uid="uid://opog1ttqf8wp" path="res://walking_guard.tscn" id="2_qglee"]
+[ext_resource type="PackedScene" uid="uid://jpjqw4ordrv8" path="res://prisoner.tscn" id="3_t6lhf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbren"]
 texture = ExtResource("1_atx4v")
@@ -390,3 +391,7 @@ speed = 500.0
 [node name="walking_guard4" parent="." instance=ExtResource("2_qglee")]
 curve = SubResource("Curve2D_kdhvh")
 speed = 200.0
+
+[node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]
+position = Vector2(114, 581)
+player_controlled = true
