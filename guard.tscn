@@ -33,8 +33,7 @@ polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
 [node name="light" type="PointLight2D" parent="."]
 position = Vector2(24, 10)
 scale = Vector2(1, 0.703125)
-color = Color(2, 2, 2, 1)
-energy = 2.0
+energy = 2.5
 shadow_enabled = true
 texture = ExtResource("3_08y4a")
 offset = Vector2(128, 0)
