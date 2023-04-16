@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxdxaip521lcq"]
+[gd_scene load_steps=21 format=3 uid="uid://dxdxaip521lcq"]
 
 [ext_resource type="Script" path="res://sandbox.gd" id="1_52v6e"]
 [ext_resource type="TileSet" uid="uid://d1i2b4bur86mn" path="res://level_tile_set.tres" id="2_3l780"]
 [ext_resource type="PackedScene" uid="uid://opog1ttqf8wp" path="res://walking_guard.tscn" id="2_qglee"]
 [ext_resource type="PackedScene" uid="uid://jpjqw4ordrv8" path="res://prisoner.tscn" id="3_t6lhf"]
 [ext_resource type="PackedScene" uid="uid://dwti8gonass1c" path="res://escape_area.tscn" id="4_5ito0"]
+[ext_resource type="PackedScene" uid="uid://bpejvtup5jbt6" path="res://score_collectible.tscn" id="6_74fb4"]
 [ext_resource type="AudioStream" uid="uid://b7ssk6ouk2183" path="res://assets/stammheim02.mp3" id="6_v67jp"]
 [ext_resource type="AudioStream" uid="uid://bv0ubcra5xr1x" path="res://assets/Alarm_rare_2.wav" id="7_jwhbq"]
+[ext_resource type="AudioStream" uid="uid://i3luoc8s14ey" path="res://assets/Whoosh_21.wav" id="9_h5qe2"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2sh2m"]
 polygon = PackedVector2Array(128, 128, 128, 384, 192, 384, 192, 256, 256, 256, 256, 320, 320, 320, 320, 384, 384, 384, 384, 256, 320, 256, 320, 192, 256, 192, 256, 128)
@@ -20,6 +22,9 @@ polygon = PackedVector2Array(832, 384, 896, 384, 896, 448, 960, 448, 960, 512, 1
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i3uc7"]
 closed = false
 polygon = PackedVector2Array(64, 64, 960, 64, 960, 256, 1088, 256, 1088, 64, 1216, 64, 1216, 640, 640, 640, 640, 448, 576, 448, 576, 576, 448, 576, 448, 512, 384, 512, 384, 640, 64, 640, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w6x"]
+size = Vector2(128, 126)
 
 [sub_resource type="Curve2D" id="Curve2D_b7sg7"]
 _data = {
@@ -51,9 +56,6 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w6x"]
-size = Vector2(128, 126)
-
 [sub_resource type="Environment" id="Environment_g7r36"]
 
 [node name="sandbox" type="Node2D"]
@@ -84,6 +86,24 @@ occluder = SubResource("OccluderPolygon2D_oyifg")
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_i3uc7")
 
+[node name="escape_area" parent="." instance=ExtResource("4_5ito0")]
+position = Vector2(1152, 128)
+
+[node name="escape_area_shape" type="CollisionShape2D" parent="escape_area"]
+shape = SubResource("RectangleShape2D_x5w6x")
+
+[node name="score_collectible" parent="." instance=ExtResource("6_74fb4")]
+position = Vector2(968, 608)
+value = 10000
+
+[node name="score_collectible2" parent="." instance=ExtResource("6_74fb4")]
+position = Vector2(728, 160)
+value = 2000
+
+[node name="score_collectible3" parent="." instance=ExtResource("6_74fb4")]
+position = Vector2(928, 416)
+value = 5000
+
 [node name="walking_guard" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
@@ -111,12 +131,6 @@ position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_m80gh")
 go_back = true
-
-[node name="escape_area" parent="." instance=ExtResource("4_5ito0")]
-position = Vector2(1152, 128)
-
-[node name="escape_area_shape" type="CollisionShape2D" parent="escape_area"]
-shape = SubResource("RectangleShape2D_x5w6x")
 
 [node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]
 position = Vector2(160, 616)
@@ -158,6 +172,12 @@ unique_name_in_owner = true
 process_mode = 2
 stream = ExtResource("7_jwhbq")
 pitch_scale = 0.75
+
+[node name="collection_sound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_h5qe2")
+pitch_scale = 2.0
+max_polyphony = 4
 
 [node name="ui_layer" type="CanvasLayer" parent="."]
 

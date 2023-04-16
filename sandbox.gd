@@ -8,6 +8,7 @@ extends Node2D
 @onready var _crew_selection_slider := %crew_selection_slider
 @onready var _alarm_track := %alarm_track
 @onready var _timer_label := %timer_label
+@onready var _collection_sound : AudioStreamPlayer = %collection_sound
 
 
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _ready() -> void:
 			_completion_panel.show()
 			_score_label.text = str(GameState.get_score())
 	)
+	GameState.additional_score_collected.connect(func(_value : int): _collection_sound.play())
 	_on_crew_selection_slider_value_changed(_crew_selection_slider.value)
 
 

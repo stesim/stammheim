@@ -3,17 +3,20 @@ extends Node
 
 signal game_over()
 signal level_completed()
+signal additional_score_collected(value : int)
 
 
 var _started := false
 var _start_time := 0
 var _end_time := 0
+var _collected_score := 0
 
 
 @onready var _tree := get_tree()
 
 
 func start() -> void:
+	_collected_score = 0
 	_started = true
 	_start_time = Time.get_ticks_msec()
 
@@ -46,11 +49,16 @@ func get_time_since_start() -> int:
 func get_score() -> int:
 	var elapsed_time := (_end_time - _start_time) / 1000.0;
 	var num_prisoners := get_prisoners().size()
-	return int(num_prisoners / elapsed_time * 100000)
+	return int(num_prisoners / elapsed_time * 100000) + _collected_score
 
 
 func get_prisoners() -> Array[Node]:
 	return get_tree().get_nodes_in_group(&"prisoners")
+
+
+func score_collected(value : int) -> void:
+	_collected_score += value
+	additional_score_collected.emit(value)
 
 
 func _stop_game() -> void:
