@@ -28,15 +28,13 @@ func restart() -> void:
 
 
 func prisoner_detected() -> void:
-	_tree.paused = true
-	print("game over")
+	_stop_game()
 	game_over.emit()
 
 
 func escape_area_reached() -> void:
 	_end_time = Time.get_ticks_msec()
-	_tree.paused = true
-	print("level completed")
+	_stop_game()
 	level_completed.emit()
 
 
@@ -44,6 +42,11 @@ func get_score() -> int:
 	var elapsed_time := (_end_time - _start_time) / 1000.0;
 	var num_prisoners := get_tree().get_nodes_in_group(&"prisoners").size()
 	return int(num_prisoners / elapsed_time * 100000)
+
+
+func _stop_game() -> void:
+	_started = false
+	_tree.paused = true
 
 
 func _unhandled_input(event : InputEvent) -> void:
