@@ -110,12 +110,13 @@ visible = false
 shape = SubResource("CapsuleShape2D_wosuh")
 
 [node name="view_area" type="Area2D" parent="."]
+position = Vector2(24, 10)
 collision_layer = 0
 collision_mask = 2
 
 [node name="view_cone" type="CollisionPolygon2D" parent="view_area"]
 visible = false
-polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
+polygon = PackedVector2Array(0, 0, 200, 64, 200, -64)
 
 [node name="light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
