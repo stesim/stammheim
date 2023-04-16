@@ -1,6 +1,26 @@
 extends CharacterBody2D
 
 
+const DEFAULT_SPEED := 64.0
+
+
+@export var speed := 64.0 :
+	set(value):
+		if value == speed:
+			return
+		speed = value
+		if _animation_player:
+			_animation_player.speed_scale = speed / DEFAULT_SPEED
+
+
+@onready var _light : PointLight2D = %light
+@onready var _animation_player : AnimationPlayer = %animation_player
+
+
+func _ready() -> void:
+	_light.energy += randf_range(-0.75, 0.25)
+
+
 func _on_view_area_body_entered(body : Node2D) -> void:
 	if _is_view_to_target_unobstructed(body):
 		GameState.prisoner_detected()

@@ -88,40 +88,34 @@ occluder = SubResource("OccluderPolygon2D_i3uc7")
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_b7sg7")
-speed = 64.0
 
 [node name="walking_guard2" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_a1i1x")
-speed = 64.0
 go_back = true
 
 [node name="walking_guard3" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_gt1pl")
-speed = 64.0
 go_back = true
 
 [node name="walking_guard4" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_rhw52")
-speed = 64.0
 
 [node name="walking_guard5" parent="." instance=ExtResource("2_qglee")]
 position = Vector2(-1.34824, -2.79692)
 scale = Vector2(1.00319, 1.02769)
 curve = SubResource("Curve2D_m80gh")
-speed = 64.0
 go_back = true
 
 [node name="escape_area" parent="." instance=ExtResource("4_5ito0")]
-position = Vector2(1160, 104)
+position = Vector2(1152, 128)
 
 [node name="escape_area_shape" type="CollisionShape2D" parent="escape_area"]
-position = Vector2(-8, 23)
 shape = SubResource("RectangleShape2D_x5w6x")
 
 [node name="prisoner" parent="." instance=ExtResource("3_t6lhf")]

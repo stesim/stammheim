@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq8pvs6onk2fb"]
+[gd_scene load_steps=8 format=3 uid="uid://bq8pvs6onk2fb"]
 
 [ext_resource type="Script" path="res://guard.gd" id="1_h3hoe"]
 [ext_resource type="Texture2D" uid="uid://bdtk2w8ctl427" path="res://assets/spritesheet_characters.png" id="1_wv1ib"]
@@ -6,6 +6,93 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wosuh"]
 height = 44.0
+
+[sub_resource type="Animation" id="Animation_gujem"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("light:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("light:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pyi4e"]
+resource_name = "walk"
+length = 0.800003
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("light:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.25, 0.23, 0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.94, 0.94), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("light:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(128, 0), Vector2(118, 0), Vector2(128, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfssj"]
+_data = {
+"RESET": SubResource("Animation_gujem"),
+"walk": SubResource("Animation_pyi4e")
+}
 
 [node name="guard" type="CharacterBody2D"]
 collision_layer = 0
@@ -31,6 +118,7 @@ visible = false
 polygon = PackedVector2Array(0, 0, 192, 64, 192, -64)
 
 [node name="light" type="PointLight2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(24, 10)
 scale = Vector2(1, 0.703125)
 energy = 2.5
@@ -38,5 +126,12 @@ shadow_enabled = true
 texture = ExtResource("3_08y4a")
 offset = Vector2(128, 0)
 texture_scale = 0.25
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_rfssj")
+}
 
 [connection signal="body_entered" from="view_area" to="." method="_on_view_area_body_entered"]
