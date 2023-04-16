@@ -45,8 +45,12 @@ func get_time_since_start() -> int:
 
 func get_score() -> int:
 	var elapsed_time := (_end_time - _start_time) / 1000.0;
-	var num_prisoners := get_tree().get_nodes_in_group(&"prisoners").size()
+	var num_prisoners := get_prisoners().size()
 	return int(num_prisoners / elapsed_time * 100000)
+
+
+func get_prisoners() -> Array[Node]:
+	return get_tree().get_nodes_in_group(&"prisoners")
 
 
 func _stop_game() -> void:
@@ -62,7 +66,7 @@ func _unhandled_input(event : InputEvent) -> void:
 
 
 func _switch_character(player_index : int) -> void:
-	var prisoners := get_tree().get_nodes_in_group(&"prisoners")
+	var prisoners := get_prisoners()
 	var current_character_index := 0
 	for prisoner in prisoners:
 		if prisoner.player_index == player_index:
