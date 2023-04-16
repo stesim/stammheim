@@ -10,6 +10,9 @@ extends CharacterBody2D
 		modulate.a = 1.0 if is_player_controlled() else 0.5
 
 
+@onready var _player_indicator := %player_indicator
+
+
 func _ready() -> void:
 	player_index = player_index
 
@@ -37,8 +40,14 @@ func _get_input_direction() -> Vector2:
 
 
 func _update_color() -> void:
+	if not _player_indicator:
+		return
 	var color := Color.WHITE
 	match player_index:
-		0: color = Color.PALE_TURQUOISE
-		1: color = Color.PALE_GREEN
-	modulate = color
+		0: color = Color(6.0, 6.0, 0.5)
+		1: color = Color(0.5, 6.0, 0.5)
+		_:
+			_player_indicator.hide()
+			return
+	_player_indicator.show()
+	_player_indicator.modulate = color
