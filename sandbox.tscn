@@ -287,6 +287,19 @@ ticks_on_borders = true
 layout_mode = 2
 text = "Start"
 
+[node name="timer_label" type="Label" parent="ui_layer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 39.0
+grow_horizontal = 2
+text = "0:00"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="ui_layer/game_over_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ui_layer/completion_panel/MarginContainer/VBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="value_changed" from="ui_layer/character_selection_panel/MarginContainer/VBoxContainer/crew_selection_slider" to="." method="_on_crew_selection_slider_value_changed"]

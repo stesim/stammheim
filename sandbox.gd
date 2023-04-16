@@ -7,6 +7,7 @@ extends Node2D
 @onready var _character_selection_panel := %character_selection_panel
 @onready var _crew_selection_slider := %crew_selection_slider
 @onready var _alarm_track := %alarm_track
+@onready var _timer_label := %timer_label
 
 
 func _ready() -> void:
@@ -21,6 +22,15 @@ func _ready() -> void:
 			_score_label.text = str(GameState.get_score())
 	)
 	_on_crew_selection_slider_value_changed(_crew_selection_slider.value)
+
+
+func _process(_delta : float) -> void:
+	if GameState.is_started():
+		var time := GameState.get_time_since_start()
+		var seconds := time % 60
+		@warning_ignore("integer_division")
+		var minutes := time / 60
+		_timer_label.text = "%d:%02d" % [minutes, seconds]
 
 
 func _on_restart_button_pressed() -> void:

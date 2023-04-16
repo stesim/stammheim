@@ -38,6 +38,11 @@ func escape_area_reached() -> void:
 	level_completed.emit()
 
 
+func get_time_since_start() -> int:
+	@warning_ignore("integer_division")
+	return (Time.get_ticks_msec() - _start_time) / 1000 if _started else 0
+
+
 func get_score() -> int:
 	var elapsed_time := (_end_time - _start_time) / 1000.0;
 	var num_prisoners := get_tree().get_nodes_in_group(&"prisoners").size()
